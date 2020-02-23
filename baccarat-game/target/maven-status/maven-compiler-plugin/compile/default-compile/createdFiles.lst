@@ -1,4 +1,5 @@
 com/penukonda/baccarat/service/Game.class
+com/penukonda/baccarat/BaccaratStats.class
 com/penukonda/baccarat/service/Value.class
 com/penukonda/baccarat/service/Game$Hand.class
 com/penukonda/baccarat/service/Card.class

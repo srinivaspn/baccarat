@@ -20,7 +20,10 @@
       <td><a href='/hello'>The servlet</a></td>
     </tr>
     <tr>
-          <td><a href='/baccarat'>See Baccarat Results</a></td>
+       <td><a href='/baccarat'>See Baccarat Results</a></td>
+    </tr>
+    <tr>
+           <td><a href='/baccaratstats'>See Baccarat Stats</a></td>
         </tr>
   </table>
 
