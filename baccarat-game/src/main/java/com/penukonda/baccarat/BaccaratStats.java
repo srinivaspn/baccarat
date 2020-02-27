@@ -20,7 +20,7 @@ public class BaccaratStats extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         Game game = new Game(new Shoe(8));
-        float countB = 0, countP =0, countT =0;
+        float countB = 0, countP =0, countT =0, countD=0;
         float handCount =100000;
         for(int i =0 ; i < handCount; i++){
             try {
@@ -31,24 +31,30 @@ public class BaccaratStats extends HttpServlet {
                     countB++;
                 }else if(result.equals(Result.TIE)){
                     countT++;
+                }else if(result.equals(Result.DRAGON)){
+                    countD++;
+                    countB++;
                 }
             }catch (ShoeEmptyException e){
-                game = new Game(new Shoe(8));
+                game.initiaize();
             }
         }
         float bankerP = countB / handCount;
         float playerP = countP / handCount;
         float tieP = countT / handCount;
+        float dragonP = countD / handCount;
         response.setContentType("text/plain");
         response
                 .getWriter()
                 .println(
                         String.format(
-                                "Banker : %s \n " +
-                                        "Player : %s \n" +
-                                        "Tie : %s",
+                                "Banker : %s\n" +
+                                        "Player : %s\n" +
+                                        "Tie : %s\n" +
+                                        "Dragon : %s",
                                 String.valueOf(bankerP),
                                 String.valueOf(playerP),
-                                String.valueOf(tieP)));
+                                String.valueOf(tieP),
+                                String.valueOf(dragonP)));
     }
 }

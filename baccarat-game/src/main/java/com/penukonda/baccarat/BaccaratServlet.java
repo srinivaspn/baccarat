@@ -37,15 +37,15 @@ public class BaccaratServlet  extends HttpServlet {
         List<String> grouped = new ArrayList<>();
 
         Result prev = results.get(0);
-        StringBuffer stringBuffer = new StringBuffer(prev.toString());
+        StringBuffer stringBuffer = new StringBuffer(prev.getValue());
         for(int i =1; i < results.size(); i++){
             Result current = results.get(i);
             if(current.equals(prev)){
-                stringBuffer.append(", "+current.toString());
+                stringBuffer.append(", "+current.getValue());
                 continue;
             }else{
                 grouped.add(stringBuffer.toString());
-                stringBuffer = new StringBuffer(current.toString());
+                stringBuffer = new StringBuffer(current.getValue());
             }
             prev = current;
         }

@@ -1,6 +1,5 @@
 package com.penukonda.baccarat.service;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,7 @@ public class Game {
         initiaize();
     }
 
-    private void initiaize(){
+    public void initiaize(){
         shoe.shuffle();
     }
 
@@ -69,7 +68,7 @@ public class Game {
         }else if(playerHand.getValue() == bankerHand.getValue()){
             return Result.TIE;
         }else{
-            return Result.BANKER;
+            return bankerHand.cardCount() == 3 && bankerHand.getValue() ==7 ? Result.DRAGON : Result.BANKER;
         }
     }
 
@@ -82,7 +81,7 @@ public class Game {
     }
 
     class Hand {
-        List<Card> cards;
+        private List<Card> cards;
 
         Hand(){
             cards = new ArrayList<>();
@@ -94,6 +93,10 @@ public class Game {
 
         int getValue(){
            return cards.stream().map(card-> card.getValue()).mapToInt(Integer::intValue).sum() % 10 ;
+        }
+
+        int cardCount(){
+            return cards.size();
         }
     }
 
